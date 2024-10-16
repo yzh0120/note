@@ -9,3 +9,4 @@ for of和forEach一样,是直接得到值。for of不能用于对象
 
 for(let key of Object.keys())
 
+

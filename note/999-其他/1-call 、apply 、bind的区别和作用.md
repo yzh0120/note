@@ -6,15 +6,27 @@ bind常用于延迟执行并改变this，如在定时器场景中。
 apply常用于处理数组，如获取数组最大值(展开第二个参数的特性)。call则常用于实现继承。
 
 ## call
-function Person(uname,age){
-    this.uname = uname
-    this.age = age
+
+var a = {
+ 
+    name:'onepixel', //定义a的属性
+ 
+    say:function(){ //定义a的方法
+        console.log("Hi,I'm function a!");
+    }
+};
+ 
+function b(name){
+    console.log("Post params: "+ name);
+    console.log("I'm "+ this.name);
+    this.say();
 }
-function Son(uname,age){
-    Person.call(this,uname,age)
-}
-var son = new Son("zhang",12)
-console.log(son)
+ 
+b.call(a,'test');
+>>
+Post params: test
+I'm onepixel
+当执行b.call 时，字符串`test`作为参数传递给了函数b,由于call的作用，函数b中的this指向了对象a, 因此相当于调用了对象a上的函数b,而实际上a中没有定义b 。
 
 
 ## 利用 apply() 会展开第二个参数的特性，效果等同于 ...[1,2,3] 展开运算符
